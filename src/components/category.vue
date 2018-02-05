@@ -1,112 +1,105 @@
-<style lang="scss" scoped>
-    .wrapper {
-        width: 700px;
-        margin: 40px auto;
-
-        .new-button {
-            float: right;
-            margin-bottom: 5px;
-            margin-right: 10px;
-        }
-    }
-</style>
-
 <template>
-  <div class="wrapper">
-      <div class="new-button">
-        <Button type="primary" shape="circle" icon="plus-round">New Category</Button>
-      </div>
-      <div style="clear: both">
-        <Table border :columns="columns" :data="data"></Table>
-      </div>
-  </div>
+  <AddableTable addButtonName="New Category" :width="700" :columns="columns" :data="data"></AddableTable>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+import AddableTable from "./addable-table.vue";
 
 const columns = [
-    {
-        title: 'Name',
-        key: 'name',
-        align: 'center',
-    },
-    {
-        title: 'Status',
-        key: 'status',
-        align: 'center',
-        width: 200,
-        render: (h, params) => {
-            const size = 16;
-            const style = {
-                marginRight: '5px'
-            };
-            
-            if (params.row.status === 'enable') {
-                return h('div', [
-                    h('Icon', {
-                        props: {
-                            type: 'eye',
-                            color: '#19be6b',
-                            size
-                        },
-                        style
-                    }),
-                    h('span', 'enable')
-                ]);
-            } else {
-                return h('div', [
-                    h('Icon', {
-                        props: {
-                            type: 'eye-disabled',
-                            color: '#ed3f14',
-                            size
-                        },
-                        style
-                    }),
-                    h('span', 'disabled')
-                ])
-            }
-        }
-    },
-    {
-        title: 'Action',
-        align: 'center',
-        width: 200,
-        render: (h, params) => {
-            return h('div', [
-                h('Button', {
-                    props: {
-                        type: 'primary',
-                        size: 'small'
-                    },
-                    style: {
-                        marginRight: '5px'
-                    }
-                }, 'Edit'),
-                h('Button', {
-                    props: {
-                        type: 'error',
-                        size: 'small'
-                    }
-                }, 'Delete')
-            ])
-        }
+  {
+    title: "Name",
+    key: "name",
+    align: "center"
+  },
+  {
+    title: "Status",
+    key: "status",
+    align: "center",
+    width: 200,
+    render: (h, params) => {
+      const size = 16;
+      const style = {
+        marginRight: "5px"
+      };
+
+      if (params.row.status === "enable") {
+        return h("div", [
+          h("Icon", {
+            props: {
+              type: "eye",
+              color: "#19be6b",
+              size
+            },
+            style
+          }),
+          h("span", "enable")
+        ]);
+      } else {
+        return h("div", [
+          h("Icon", {
+            props: {
+              type: "eye-disabled",
+              color: "#ed3f14",
+              size
+            },
+            style
+          }),
+          h("span", "disabled")
+        ]);
+      }
     }
+  },
+  {
+    title: "Action",
+    align: "center",
+    width: 200,
+    render: (h, params) => {
+      return h("div", [
+        h(
+          "Button",
+          {
+            props: {
+              type: "primary",
+              size: "small"
+            },
+            style: {
+              marginRight: "5px"
+            }
+          },
+          "Edit"
+        ),
+        h(
+          "Button",
+          {
+            props: {
+              type: "error",
+              size: "small"
+            }
+          },
+          "Delete"
+        )
+      ]);
+    }
+  }
 ];
 
 const data = [
-    { name: '交通', status: 'enable' },
-    { name: '交通', status: 'enable' },
-    { name: '交通', status: 'disable' },
-    { name: '交通', status: 'enable' },
-    { name: '交通', status: 'disable' },
-    { name: '交通', status: 'enable' }
+  { name: "交通", status: "enable" },
+  { name: "交通", status: "enable" },
+  { name: "交通", status: "disable" },
+  { name: "交通", status: "enable" },
+  { name: "交通", status: "disable" },
+  { name: "交通", status: "enable" }
 ];
 
-@Component
+@Component({
+  components: {
+    AddableTable
+  }
+})
 export default class Category extends Vue {
-    columns: any[] = columns;
-    data: any[] = data;
+  columns: any[] = columns;
+  data: any[] = data;
 }
 </script>

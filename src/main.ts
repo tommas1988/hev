@@ -9,6 +9,9 @@ import App from './App.vue';
 
 import Category from './components/category.vue';
 import Tag from './components/tag.vue';
+import ExpenseDetail from './components/expense-detail.vue';
+import ExpenseList from './components/expense-list.vue';
+import Stats from './components/stats.vue';
 
 Vue.use(VueRouter);
 Vue.use(iView);
@@ -17,7 +20,10 @@ Vue.config.productionTip = false;
 
 const routes = [
   { path: '/settings/category', component: Category },
-  { path: '/settings/tag', component: Tag }
+  { path: '/settings/tag', component: Tag },
+  { path: '/expense/new', component: ExpenseDetail },
+  { path: '/expense/list', component: ExpenseList },
+  { path: '/stat', component: Stats },
 ]
 
 const router = new VueRouter({
