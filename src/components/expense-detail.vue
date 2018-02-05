@@ -1,7 +1,7 @@
 <template>
   <div>
     <AddableTable addButtonName="New Item" :width="1000" :columns="columns" :data="data">
-      <DatePicker slot="extra-left" type="date" placeholder="Select date"></DatePicker>
+      <DatePicker slot="extra-left" :value="date" type="date" placeholder="Select date"></DatePicker>
     </AddableTable>
   </div>
 </template>
@@ -24,7 +24,16 @@ const columns = [
   {
     title: 'Tags',
     key: 'tags',
-    align: 'center'
+    align: 'center',
+    render: (h, params) => {
+      if (params.row.tags.length > 0) {
+        let children = [];
+        for (let name of params.row.tags) {
+          children.push(h('Tag', name));
+        }
+        return h('div', children);
+      }
+    }
   },
   {
     title: 'Action',
@@ -59,7 +68,13 @@ const columns = [
     }
   }
 ];
-const data = [];
+const data = [
+  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+  { title: '外卖', category: '饮食', tags: [] },
+  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+];
 
 @Component({
   components: {
@@ -69,5 +84,18 @@ const data = [];
 export default class ExpenseDetail extends Vue {
   columns: any[] = columns;
   data: any[] = data;
+
+  get date(): string {
+    let dateStr: string = this.$route.params.date;
+    if (dateStr !== 'undefined') {
+      return dateStr;
+    }
+
+    return '';
+  }
+
+  // get data(): any[] {
+  //   return data;
+  // }
 }
 </script>

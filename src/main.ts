@@ -22,8 +22,10 @@ const routes = [
   { path: '/settings/category', component: Category },
   { path: '/settings/tag', component: Tag },
   { path: '/expense/new', component: ExpenseDetail },
+  { path: '/expense/new/:date', component: ExpenseDetail },
+  { path: '/expense/:id', component: ExpenseDetail },
   { path: '/expense/list', component: ExpenseList },
-  { path: '/stat', component: Stats },
+  { path: '/stats', component: Stats },
 ]
 
 const router = new VueRouter({
