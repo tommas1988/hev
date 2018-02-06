@@ -62,24 +62,29 @@ export default class ExpenseDetail extends Vue {
   columns: any[] = columns;
 
   get date(): string {
-    let dateStr: string = this.$route.params.date;
-    if (dateStr !== 'undefined') {
-      return dateStr;
+    let params = this.$route.params;
+
+    if (params.id) {
+      return '2018-02-10';
+    } else if (params.date) {
+      return params.date;
     }
 
     return '';
   }
 
   get expenseItems(): any[] {
-    const data = [
-      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-      { title: '外卖', category: '饮食', tags: [] },
-      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] }
-    ];
+    if (this.$route.params.id) {
+      return [
+        { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+        { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+        { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+        { title: '外卖', category: '饮食', tags: [] },
+        { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] }
+      ];
+    }
 
-    return data;
+    return [];
   }
 }
 </script>

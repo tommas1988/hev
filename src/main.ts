@@ -23,8 +23,8 @@ const routes = [
   { path: '/settings/tag', component: Tag },
   { path: '/expense/new', component: ExpenseDetail },
   { path: '/expense/new/:date', component: ExpenseDetail },
-  { path: '/expense/:id', component: ExpenseDetail },
   { path: '/expense/list', component: ExpenseList },
+  { path: '/expense/:id', component: ExpenseDetail },
   { path: '/stats', component: Stats },
 ]
 
