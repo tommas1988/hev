@@ -3,94 +3,65 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import AddableTable from "./addable-table.vue";
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import AddableTable from './addable-table.vue';
+import ActionButtonList from './action-button-list.vue';
+import IconText from './icon-text.vue';
 
 const columns = [
   {
-    title: "Name",
-    key: "name",
-    align: "center"
+    title: 'Name',
+    key: 'name',
+    align: 'center'
   },
   {
-    title: "Status",
-    key: "status",
-    align: "center",
+    title: 'Status',
+    key: 'status',
+    align: 'center',
     width: 200,
     render: (h, params) => {
-      const size = 16;
-      const style = {
-        marginRight: "5px"
-      };
+      let icon: any = { size: 16 };
+      let text: string;
 
-      if (params.row.status === "enable") {
-        return h("div", [
-          h("Icon", {
-            props: {
-              type: "eye",
-              color: "#19be6b",
-              size
-            },
-            style
-          }),
-          h("span", "enable")
-        ]);
+      if (params.row.status === 'enable') {
+        icon.type = 'eye';
+        icon.color = '#19be6b';
+        text = 'enable';
       } else {
-        return h("div", [
-          h("Icon", {
-            props: {
-              type: "eye-disabled",
-              color: "#ed3f14",
-              size
-            },
-            style
-          }),
-          h("span", "disabled")
-        ]);
+        icon.type = 'eye-disabled';
+        icon.color = '#ed3f14';
+        text = 'disable';
       }
+
+      return h(IconText, {
+        props: { icon, text }
+      });
     }
   },
   {
-    title: "Action",
-    align: "center",
+    title: 'Action',
+    align: 'center',
     width: 200,
     render: (h, params) => {
-      return h("div", [
-        h(
-          "Button",
-          {
-            props: {
-              type: "primary",
-              size: "small"
-            },
-            style: {
-              marginRight: "5px"
-            }
-          },
-          "Edit"
-        ),
-        h(
-          "Button",
-          {
-            props: {
-              type: "error",
-              size: "small"
-            }
-          },
-          "Delete"
-        )
-      ]);
+      return h(ActionButtonList, {
+        props: {
+          buttons: [
+            { name: 'Edit', type: 'primary' },
+            { name: 'Delete', type: 'error' }
+          ]
+        }
+      });
     }
   }
 ];
 
 const data = [
-  { name: "交通", status: "enable" },
-  { name: "交通", status: "enable" },
-  { name: "交通", status: "disable" },
-  { name: "交通", status: "enable" },
-  { name: "交通", status: "disable" },
-  { name: "交通", status: "enable" }
+  { name: '交通', status: 'enable' },
+  { name: '交通', status: 'enable' },
+  { name: '交通', status: 'disable' },
+  { name: '交通', status: 'enable' },
+  { name: '交通', status: 'disable' },
+  { name: '交通', status: 'enable' }
 ];
 
 @Component({

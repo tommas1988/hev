@@ -2,7 +2,8 @@
 .wrapper {
   margin: 40px auto;
 
-  .extra-left, .new-button {
+  .extra-left,
+  .new-button {
     margin-bottom: 5px;
   }
   .extra-left {
@@ -31,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class AddableTable extends Vue {
@@ -42,7 +43,7 @@ export default class AddableTable extends Vue {
 
   get style() {
     return {
-      width: this.width + "px"
+      width: this.width + 'px'
     };
   }
 }

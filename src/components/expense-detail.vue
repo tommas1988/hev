@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AddableTable addButtonName="New Item" :width="1000" :columns="columns" :data="data">
+    <AddableTable addButtonName="New Item" :width="1000" :columns="columns" :data="expenseItems">
       <DatePicker slot="extra-left" :value="date" type="date" placeholder="Select date"></DatePicker>
     </AddableTable>
   </div>
@@ -9,6 +9,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import AddableTable from './addable-table.vue';
+import ActionButtonList from './action-button-list.vue';
 
 const columns = [
   {
@@ -40,50 +41,25 @@ const columns = [
     align: 'center',
     width: 200,
     render: (h, params) => {
-      return h("div", [
-        h(
-          "Button",
-          {
-            props: {
-              type: "primary",
-              size: "small"
-            },
-            style: {
-              marginRight: "5px"
-            }
-          },
-          "Edit"
-        ),
-        h(
-          "Button",
-          {
-            props: {
-              type: "error",
-              size: "small"
-            }
-          },
-          "Delete"
-        )
-      ]);
+      return h(ActionButtonList, {
+        props: {
+          buttons: [
+            { name: 'Edit', type: 'primary' },
+            { name: 'Delete', type: 'error' }
+          ]
+        }
+      });
     }
   }
-];
-const data = [
-  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
-  { title: '外卖', category: '饮食', tags: [] },
-  { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
 ];
 
 @Component({
   components: {
-    AddableTable,
+    AddableTable
   }
 })
 export default class ExpenseDetail extends Vue {
   columns: any[] = columns;
-  data: any[] = data;
 
   get date(): string {
     let dateStr: string = this.$route.params.date;
@@ -94,8 +70,16 @@ export default class ExpenseDetail extends Vue {
     return '';
   }
 
-  // get data(): any[] {
-  //   return data;
-  // }
+  get expenseItems(): any[] {
+    const data = [
+      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] },
+      { title: '外卖', category: '饮食', tags: [] },
+      { title: '外卖', category: '饮食', tags: ['奢侈', '日常'] }
+    ];
+
+    return data;
+  }
 }
 </script>

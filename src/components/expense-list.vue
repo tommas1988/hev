@@ -1,8 +1,8 @@
 <style lang="scss" scoped>
-  .wrapper {
-    margin: 30px auto;
-    width: 900px;
-  }
+.wrapper {
+  margin: 30px auto;
+  width: 900px;
+}
 </style>
 
 <template>
@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import ActionButtonList from './action-button-list.vue';
 
 const columns = [
   {
@@ -33,35 +34,18 @@ const columns = [
     align: 'center'
   },
   {
-    title: "Action",
-    align: "center",
+    title: 'Action',
+    align: 'center',
     width: 200,
     render: (h, params) => {
-      return h("div", [
-        h(
-          "Button",
-          {
-            props: {
-              type: "primary",
-              size: "small"
-            },
-            style: {
-              marginRight: "5px"
-            }
-          },
-          "Edit"
-        ),
-        h(
-          "Button",
-          {
-            props: {
-              type: "error",
-              size: "small"
-            }
-          },
-          "Delete"
-        )
-      ]);
+      return h(ActionButtonList, {
+        props: {
+          buttons: [
+            { name: 'Edit', type: 'primary' },
+            { name: 'Delete', type: 'error' }
+          ]
+        }
+      });
     }
   }
 ];
