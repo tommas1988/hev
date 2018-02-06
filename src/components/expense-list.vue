@@ -49,7 +49,30 @@ const columns = [
     }
   }
 ];
-const data = [];
+const data = [
+  {
+    date: '2018-02-01',
+    cost: 100,
+    items: [
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '公交', 'category': '交通', tags: [] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+    ]
+  },
+  {
+    date: '2018-02-02',
+    cost: 200,
+    items: [
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+      { title: '公交', 'category': '交通', tags: [] },
+      { title: '打车', 'category': '交通', tags: ['奢侈'] },
+    ]
+  }
+];
 
 @Component
 export default class ExpenseList extends Vue {
