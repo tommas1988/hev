@@ -17,13 +17,6 @@ import ActionButtonList from './action-button-list.vue';
 
 const columns = [
   {
-    type: 'expand',
-    width: 50,
-    render: (h, params) => {
-      return h('div', 'Expand Content');
-    }
-  },
-  {
     title: 'Date',
     key: 'date',
     align: 'center'
@@ -41,7 +34,7 @@ const columns = [
       return h(ActionButtonList, {
         props: {
           buttons: [
-            { name: 'Edit', type: 'primary' },
+            { name: 'View', type: 'primary' },
             { name: 'Delete', type: 'error' }
           ]
         }
@@ -53,24 +46,10 @@ const data = [
   {
     date: '2018-02-01',
     cost: 100,
-    items: [
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '公交', 'category': '交通', tags: [] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-    ]
   },
   {
     date: '2018-02-02',
     cost: 200,
-    items: [
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-      { title: '公交', 'category': '交通', tags: [] },
-      { title: '打车', 'category': '交通', tags: ['奢侈'] },
-    ]
   }
 ];
 
