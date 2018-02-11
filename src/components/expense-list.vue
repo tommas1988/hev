@@ -7,6 +7,20 @@
 
 <template>
   <div class="wrapper">
+    <Form>
+      <Row>
+        <Col>
+          <FormItem label="title">
+            <Input placeholder="search by title" />
+          </FormItem>
+          <FormItem label="category">
+            <Select filterable>
+              <Option v-for="item in category">{{ item.name }}</Option>
+            </Select>
+          </FormItem>
+        </Col>
+      </Row>
+    </Form>
     <Table border :columns="columns" :data="data"></Table>
   </div>
 </template>
@@ -53,9 +67,18 @@ const data = [
   }
 ];
 
+const category = [
+  { id: 1, name: '交通' },
+  { id: 2, name: '交通' },
+  { id: 3, name: '交通' },
+  { id: 4, name: '交通' },
+  { id: 5, name: '交通' },
+];
+
 @Component
 export default class ExpenseList extends Vue {
   columns: any[] = columns;
   data: any[] = data;
+  category: any[] = category;
 }
 </script>
