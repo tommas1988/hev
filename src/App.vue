@@ -32,14 +32,15 @@
   text-align: center;
 }
 </style>
+
 <template>
   <div class="layout">
     <Layout>
       <Header>
-        <Menu mode="horizontal" theme="dark">
+        <Menu mode="horizontal" theme="dark" @on-select="goto">
           <div class="layout-logo">HEV</div>
           <div class="layout-nav">
-            <MenuItem>
+            <MenuItem name="stats">
               <Icon type="stats-bars"></Icon>
               Statistic
             </MenuItem>
@@ -48,23 +49,23 @@
                 <Icon type="social-yen"></Icon>
                 Expense
               </template>
-              <MenuItem>
-              <router-link to="/expense/new">Add</router-link>
+              <MenuItem name="expense-new">
+                Add
               </MenuItem>
-              <MenuItem>
-              <router-link to="/expense/list">List</router-link>
+              <MenuItem name="expense-list">
+                List
               </MenuItem>
             </Submenu>
-            <Submenu>
+            <Submenu name="settings">
               <template slot="title">
                 <Icon type="settings"></Icon>
                 Settings
               </template>
-              <MenuItem>
-              <router-link to="/settings/category">Category</router-link>
+              <MenuItem name="category-setting">
+                Category
               </MenuItem>
-              <MenuItem>
-              <router-link to="/settings/tag">Tag</router-link>
+              <MenuItem name="tag-setting">
+                Tag
               </MenuItem>
             </Submenu>
           </div>
@@ -88,5 +89,22 @@
   </div>
 </template>
 <script lang="ts">
-export default {};
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import routes from './routes';
+
+@Component
+export default class App extends Vue {
+  beforeCreate() {
+    this.$router.addRoutes(routes);
+  }
+
+  goto(name: string) {
+    for (let route of routes) {
+      if (route.name === name) {
+        this.$router.push({ path: route.path });
+        return;
+      }
+    }
+  }
+}
 </script>
